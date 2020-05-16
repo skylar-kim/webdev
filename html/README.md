@@ -86,3 +86,6 @@ The submit button default displays "Submit" but here it is changed to "Register!
 ```
 Create a button to reset all fields
 <input type="reset">
+
+### div and span
+`<div></div>` and `<span></span>` are tags that are used as containers when we want to add style or specific functionalities later. 
