@@ -96,7 +96,7 @@ h2,p {
 }
 ```
 #### element1 element2: select all element2 that is inside element1
-For example: since the following doesn't have any <p> in <h2>, there will be no properties applied to the <p> tags or the <h2> tag
+For example: since the following doesn't have any `<p>` in `<h2>`, there will be no properties applied to the `<p>` tags or the `<h2>` tag
 ```css
 h2 p {
 	color: #F26671;
@@ -116,7 +116,7 @@ h2 p {
     </div>
 </section>
  ```
-However, if we have a <p> inside a <h2>, then the CSS properties will apply. Remember, the CSS from above will only apply to the "homegnome" and not "Home".
+However, if we have a `<p>` inside a `<h2>`, then the CSS properties will apply. Remember, the CSS from above will only apply to the "homegnome" and not "Home".
 ```html
 <section>
     <h2>Home<p>homegnome</p></h2>
@@ -129,7 +129,7 @@ However, if we have a <p> inside a <h2>, then the CSS properties will apply. Rem
 </section>
 ```
 #### element1 > element2: select all element2 that their parent is element1
-For example: Since homegnome's parent tag is <div> and not <h2>, the following CSS style will not apply.
+For example: Since homegnome's parent tag is `<div>` and not `<h2>`, the following CSS style will not apply.
 ```css
 h2 > p {
 	color: #F26671;
@@ -154,7 +154,7 @@ h2 > p {
 </section>
 ```
 #### element1 + element2: select any element2 that is after element1
-For example: The CSS style will apply to "homegnome" because <p> is directly after the `<h2>Home</h2>`
+For example: The CSS style will apply to "homegnome" because `<p>` is directly after the `<h2>Home</h2>`
 ```css
 h2 + p {
 	color: #F26671;
@@ -185,7 +185,7 @@ h2 + p:hover {
 }
 ``` 
 #### :last-child : only the last child of each class will have the CSS style apply
-For example: The following CSS will only apply to the last <p> of div1 and div2 (because the <p> belongs to the same class)
+For example: The following CSS will only apply to the last `<p>` of div1 and div2 (because the `<p>` belongs to the same class)
 ```css
 .webtext:last-child {
 	border: 5px dashed #F26680;
@@ -212,7 +212,7 @@ For example: The following CSS will only apply to the last <p> of div1 and div2 
 #### :first-child : same thing as :last-child, just applies it to the first element
 
 #### !important (not recommended): !important overrides any cascading rules 
-For example: although the color green typically should apply to the <p> because of order, the !important overrides the rules and applies pink to all of the <p> in the html file
+For example: although the color green typically should apply to the `<p>` because of order, the !important overrides the rules and applies pink to all of the `<p>` in the html file
 ```css
 p {
 	color: pink !important;
