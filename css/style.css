@@ -16,8 +16,21 @@ h2, p {
 	cursor: pointer;
 }
 p {
-	color: black;
-	
+	color: #8C251C;
+	text-decoration: underline;
+	line-height: 20px;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 110%;
+	font-family: 'Open Sans', sans-serif;
+}
+img {
+	float: left;
+}
+
+footer{
+	clear: both;
+	text-align: center;
 }
 
 li {
@@ -30,7 +43,7 @@ li {
 }
 
 .active {
-	color: black;
+	color: white;
 }
 
 #div1 {

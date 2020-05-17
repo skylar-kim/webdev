@@ -234,3 +234,19 @@ If style2 has a different modification to an element, then the style2.css will "
 -Specificity: the more specific something is, the more likely it will win out over the others
 -Importance
 -Order
+
+#### Images in CSS
+1. Insert image in html file
+2. In CSS file, you can either make it float left or right, and then any text will shift either way around the image. 
+3. However, if you want to have a text that won't "tag on" to the image, must do the following: 
+```css
+img {
+	float: left;
+}
+
+footer{
+	clear: both;
+	text-align: center;
+}
+```
+This is so that any text in the `<footer></footer>` will be separate and not be tagged onto the image. 
