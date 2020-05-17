@@ -250,3 +250,50 @@ footer{
 }
 ```
 This is so that any text in the `<footer></footer>` will be separate and not be tagged onto the image. 
+
+#### px vs em vs rem
+`em` example: the following says that "Lorem ipsum" should be 5 times the size of the containing element (ie. 20px). This is useful because the size stays relative to the containing element. 
+```css
+p{
+	font-size: 20px;
+}
+
+span {
+	font-size: 5em;
+}
+```
+```html
+<section>
+    <h2>Login</h2>
+    <p>Introduction</p>
+    <p><span>Lorem ipsum</span> dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </section>
+```
+`rem` example: The size will be relative to the root element, which is, html. 
+```css
+p{
+	font-size: 20px;
+}
+
+span {
+	font-size: 5rem;
+}
+```
+```html
+<section>
+    <h2>Login</h2>
+    <p>Introduction</p>
+    <p><span>Lorem ipsum</span> dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </section>
+```
+
