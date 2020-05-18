@@ -27,8 +27,8 @@ The most important part of CSS grid system is adding the following:
 }
 ```
 
-`grid-template-columns` tellsthe page how many columns we want to use. 
-Note: `grid-template-columns` can be specified with pixels, percentages, etc BUT the best tool to use is by specifying the __fr__
+`grid-template-columns` tells the page how many columns we want to use. 
+Note: `grid-template-columns` can be specified with pixels, percentages, etc BUT the best tool to use is by specifying the __fr__.  
 __fr__: fraction, the number indicates how many fractions are in that column
 For example: There are three equal columns here.
 ```css
@@ -44,3 +44,20 @@ For example: There are three columns here, the third column is 2x the size of th
 	grid-template-columns: 1fr 1fr 2fr;
 }
 ```
+
+### CSS Grids 2
+`grid-template-rows`: define the way the rows should look
+
+
+
+
+
+
+
+
+
+
+
+
+
+
