@@ -61,17 +61,19 @@ We put the Javascript at the bottom of the body because the browser can't displa
 
 ### Javascript Function
 Can declare functions two ways:
+#### Function Declaration
 ```javascript
 function functionName(a, b){
 	// perform action on a and or b
 	// return statement
 }
 ```
+#### Function Expression
 ```javascript
 var functionName2 = function functionName(a, b){
 	// perform action on a and or b
 	// return statement
-}
+};
 ```
 
 ### Arrays
@@ -115,4 +117,102 @@ var newlist = list.concat(["bee","deer"]);
 newlist.sort();
 //
 
+```
+
+### Javascript Objects
+```javascript
+var user = {
+	name: "John",
+	age: 34,
+	hobby: "Soccer",
+	isMarried: false,
+	spells: ["magic", "shazam", "boo"],
+	shout: function() {
+		console.log("AHHHHH");
+	}
+};
+
+// to access the data in the objects:
+console.log(user.name);
+
+// How to add properties to an object?
+user.favoriteFood = "spinach";
+
+// now user object has the following:
+// user (name: name: "John",
+// 	age: 34,
+// 	hobby: "Soccer",
+// 	isMarried: false,
+// 	favoriteFood = "spinach")
+
+// change a data member in the object
+user.isMarried = true;
+
+// now, user.isMarried will return true
+
+// access an element in a list in a object
+consol.log(user.spells[1] ); // returns "shazam"
+
+// call a method inside an object
+user.shout(); // returns "AHHHH"
+
+// can have a list of objects
+var list = [
+	{
+		username: "andy"
+		password: "1234"
+	},
+	{
+		username: "jess",
+		password: "123"
+	}
+];
+
+// can return a data member in an object in a list
+console.log(list[0].username); // returns "andy"
+```
+Can have an empty object and an empty list
+```javascript
+user2 = {}; // returns {}
+
+list2 = []; // returns []
+```
+NULL objects are __completely__ empty. 
+```javascript
+var emptyObj = {};
+
+var nullObj = null; // returns null
+
+nullObj.name = "Andy"; // this is not possible
+emptyObj.name = "Andy"; // this is possible
+```
+
+### Loops
+```javascript
+var todos = [
+	"clean room",
+	"brush teeth",
+	"exercise",
+	"study javascript",
+	"eat healthy"
+];
+for (var i = 0; i < todos.length; i++)
+{
+	todos[i] = todos[i] + "!";
+}
+```
+Popping items of an array
+```javascript
+var todos = [
+	"clean room",
+	"brush teeth",
+	"exercise",
+	"study javascript",
+	"eat healthy"
+];
+var todosLength = todos.length;
+for (var i = 0; i < todosLength; i++)
+{
+	todos.pop();
+}
 ```
