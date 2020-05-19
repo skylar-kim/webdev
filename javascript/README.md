@@ -46,6 +46,30 @@ else if (name === "Rilakkuma" && name2 === "Korilakkuma")
 	alert("hello bears");
 }
 ```
-not operator applies as usual
+not operator applies as usual  
 
+### Javascript in HTML
+To link a Javascript file in an html file:
+```html
+<body>
+	<h1>Javascript in HTML</h1>
+	<script type="text/javascript" src="script.js">
+	</script>
+</body>
+```
+We put the Javascript at the bottom of the body because the browser can't display while waiting for Javascript. Since we want the audience to see our Javascript file, we should put the Javascript link at the bottom of the body.
 
+### Javascript Function
+Can declare functions two ways:
+```javascript
+function functionName(a, b){
+	// perform action on a and or b
+	// return statement
+}
+```
+```javascript
+var functionName2 = function functionName(a, b){
+	// perform action on a and or b
+	// return statement
+}
+```
