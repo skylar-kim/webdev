@@ -216,3 +216,44 @@ for (var i = 0; i < todosLength; i++)
 	todos.pop();
 }
 ```
+While Loops
+```javascript
+var cnt = 0;
+while (cnt < 10)
+{
+	console.log(cnt);
+	cnt++;
+}
+
+var cnt2 = 0;
+do {
+	console.log(cnt2);
+	cnt2--;
+} while (cnt2 > 10);
+```
+Using .forEach
+```javascript
+var todos = [
+	"clean room",
+	"brush teeth",
+	"exercise",
+	"study javascript",
+	"eat healthy"
+];
+todos.forEach(function(todo, i)){
+	console.log(todo,i);
+}
+```
+```javascript
+var todos = [
+	"clean room",
+	"brush teeth",
+	"exercise",
+	"study javascript",
+	"eat healthy"
+];
+function logTodos(todo, i) {
+	console.log(todo,i);
+}
+todos.forEach(logTodos);
+```
