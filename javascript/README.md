@@ -73,3 +73,46 @@ var functionName2 = function functionName(a, b){
 	// return statement
 }
 ```
+
+### Arrays
+```javascript
+var list = ["tigers", "cat", "bear", "bird"];
+
+console.log(list[1]);
+```
+Can have an array of functions:
+```javascript
+var functionList= [function apple(), function banana()];
+```
+Can have a mixed array (not advised)
+```javascript
+var mixedList = ["apples", 3, undefined, true, function apple()];
+```
+Array within an array:
+```javascript
+// array within a array
+var list = [
+	["tiger", "cat", "bear", "bird"]
+];
+// returns bear
+console.log(list[0][2]);
+```
+Array acts like a deque list I guess?
+```javascript
+var list = ["tiger", "cat", "bear", "bird"]
+list.shift();
+// array is now: cat, bear, bird
+
+list.pop();
+// array is now: cat, bear
+
+list.push("elephant");
+// array is now: cat, bear, elephant
+
+var newlist = list.concat(["bee","deer"]);
+// array is now: cat, bear, elephant, bee, deer
+
+newlist.sort();
+//
+
+```
