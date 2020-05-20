@@ -109,9 +109,46 @@ For example
 document.querySelectorAll("li")[1]; // returns Jello
 document.querySelectorAll("li")[1].parentElement; // get the parent element, <ul></ul>
 document.querySelectorAll("li")[1].parentElement.parentElement; // get the parent of the parent of li, which is the <body></body>
+document.querySelectorAll("li")[1].parentElement.parentElement.children; //get the children of body
 ```
 
+#### Important to CACHE selectors in Variables
+```javascript
+// instead of doing this
+document.querySelectorAll("li")[1];
+document.querySelectorAll("li")[1];
+document.querySelectorAll("li")[1];
+document.querySelectorAll("li")[1];
+// capture the data in a variable to prevent taking up memory
+var li1 = document.querySelectorAll("li")[1];
+```
 
+### DOM Events
+There are events that a Web browser allows us to "listen" to:  
+If we have a button, we can "listen" for an event:
+```javascript
+var button = document.getElementsByTagName("button")[0];
+
+button.addEventListener("click", function() {
+	console.log("CLICK!");
+}) 
+```
+Remember to add the [0] to access the first element in the array because `getElementsByTagName` returns an array of (in this case) buttons. 
+
+### Callback Functions
+Event Listener Syntax:
+```javascript
+button.addEventListener("click", addListAfterClick);
+input.addEventListener("keypress", addListAfterKeypress);
+```
+Notice how the function calls don't have a parantheses ():
+```javascript
+button.addEventListener("click", addListAfterClick());
+input.addEventListener("keypress", addListAfterKeypress(event));
+```
+This is called a __callback function__.  
+When those two javascript lines run, we __do not want addListAfterClick to run__ because we want to run it AFTER the event happens. When the event happens (ie. a click) then the function is automatically run every time the click happens.  
+We are passing a reference to the function without running it. 
 
 
 
