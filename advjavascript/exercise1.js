@@ -6,7 +6,7 @@ function q1() {
     if(a > 1) {
         a = 3;
     }
-    alert(a);
+    alert(a); // a = 3
 }
 
 //#2
@@ -16,7 +16,7 @@ function q2() {
 }
 
 function q22() {
-    alert(a);
+    alert(a); // a = 0;
 }
 
 
