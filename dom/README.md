@@ -150,6 +150,16 @@ This is called a __callback function__.
 When those two javascript lines run, we __do not want addListAfterClick to run__ because we want to run it AFTER the event happens. When the event happens (ie. a click) then the function is automatically run every time the click happens.  
 We are passing a reference to the function without running it. 
 
+### Developer Fundamentals: Accessing the DOM
+#### Problem with Inner HTML:
+Every time the inner HTML was set, the HTML has to be parsed, a DOM constructed and inserted into the document (aka recreate the entire DOM tree and put it back into the Web browser).  
+Susceptible to cross-sized scripting (security risk).
+
+#### Modern Day Idea:
+Want to make fast performance websites: minimize the amount of backend requests.  
+What is important: Location of server, how many trips, and the size of the files. Therefore, we want to minimize the num of DOM manipulation.  
+Paint Splashing: the green actions in the Developer Tools means that something is being "repainted"
+
 
 
 
