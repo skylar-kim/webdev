@@ -167,10 +167,84 @@ function add(a,b) {
 const add = (a,b) => a + b;
 ```
 
+### Advanced Functions
+The word `function` is no longer used.  
+We change this syntax:
+```javascript
+function first() {
+	var greet ='Hi';
+	function second() {
+		alert(greet);
+	}
+	return second;
+}
+var newFunc = first();
+newFunc();
+```
+To:  
+```javascript
+const first = () => {
+	const greet = 'Hi';
+	const second = () => {
+		alert(greet);
+	}
+	return second;
+}
 
+const newFunc = first();
+//const newFunc = const second = () => {
+//	alert(greet);
+//}
+newFunc();
+```
+Variables created inside functions (including parameters) are local to the function. 
+Every time you run the first function, the block of code gets executed and the 'greet' variable gets created every time. 
 
+#### Closures: Child scope always has access to the parent's scope
+A function ran, the function executed, it's never going to execute again, __but it's going to remember that there are references to those variables so the child scope always has access to the parent scope__.
+Parent don't have access to their children scope. 
 
+### Currying
+The process of converting a function that takes multiple arguments into a function that takes them one at a time.  
+```javascript
+const multiple = (a,b) => a * b;
+const curriedMultiple = (a) => (b) => a*b;
 
+// in console: a = 3, b = 4
+curriedMultiple(3)(4);
+// returns 12
+```
+Why? __The function becomes more extensible.__
+For example: Anytime you want to multiple something by five, you can do the following:
+```javascript
+const multipleBy5 = curriedMultiply(5);
+multipleBy5(10); // returns 50
+multipleBy5(11); // returns 55
+```
+### Compose
+Act of putting two functions together to form a third function where the output of one function is the input of the other. 
+```javascript
+const compose = (f, g) => (a) => f(g(a)); // a = 5
+const sum = (num) => num + 1;
+compose(sum, sum)(5);
+// returns 7
+```
+Tips: Avoid side effects and do functional purity
+
+### Side Effects
+Any functions that happen inside of the function that we don't know anything about. If it interacts or reads or writes to an external variable or `console.log` then that is a side effect. 
+For example: we want to avoid the following because the function is changing what's outside of the function. 
+```javascript
+// this is a side effect example
+var a = 1;
+function b() {
+	a = 2;
+}
+```
+### Functional Purity
+Want to avoid side effects and always want to return a value, no undefined.  
+By avoiding side effects and always returning, we create __deterministic__ code. 
+A program is __deterministic__ (repeatable) if it produces the very same output when given the same input no atter how many times it is run. Non-deterministic code is hard to test an debug, since bugs and specific configuration cannot be easily reproduced. 
 
 
 

@@ -3,17 +3,17 @@
 // Root scope (window)
 var fun = 5;
 
-function funFunction() {
-	// child scope
-	var fun = "hellooo";
-	console.log(1, fun);
-}
+// function funFunction() {
+// 	// child scope
+// 	var fun = "hellooo";
+// 	console.log(1, fun);
+// }
 
-function funerFunction() {
-	// child scope
-	var fun = "Byee";
-	console.log(2, fun);
-}
+// function funerFunction() {
+// 	// child scope
+// 	var fun = "Byee";
+// 	console.log(2, fun);
+// }
 
 function funestFunction(){
 	// child scope
