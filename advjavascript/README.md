@@ -246,8 +246,56 @@ Want to avoid side effects and always want to return a value, no undefined.
 By avoiding side effects and always returning, we create __deterministic__ code. 
 A program is __deterministic__ (repeatable) if it produces the very same output when given the same input no atter how many times it is run. Non-deterministic code is hard to test an debug, since bugs and specific configuration cannot be easily reproduced. 
 
+### Arrays
+```javascript
+const array = [1,2,10,16];
+const double = [];
+const newArray = array.forEach((num) => {
+	double.push(num * 2);
+})
 
+console.log(newArray)
+```
 
+### Map 
+```javascript
+const array = [1,2,10,16];
+const mapArray = array.map(num => {
+	return num*2;
+});
+// returns an array of [2,4,20,32]
+```
+#### What's the difference between map and forEach?
+Whenever you want to do a simple look and take some action on an array, you want to use a map instead of a forEach.  
+The forEach may not return anything.
+Map has a restriction on the operation: _-map expects the operation to return an element. -_  
+Theoretically, the "side effects" are gone, and because there is a return statement required, the function is deterministic.  
+Therefore with a .map method, we have created a pure function.  
+Another important note: we are not changing the original array. We are making a new copy of the array therefore never mutating the original array.
+```javascript
+// shorthand version
+const mapArray = array.map(num => num*2);
+```
+### Filter
+```javascript
+const array = [1,2,10,16];
+// return a filterArray that only contains elements that meet a certain condition (ie. greater than 5)
+const filterArray = array.filter(num => {
+	return num > 5;
+})
+```
+### Reduce
+```javascript
+const array = [1,2,10,16];
+const reduceArray = array.reduce((accumulator, num) => {
+	return accumulator + num;
+}, 0)
+// returns 29
+const reduceArray2 = array.reduce((accumulator, num) => {
+	return accumulator + num;
+}, 5)
+// returns 34 because starting value
+```
 
 
 
