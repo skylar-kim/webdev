@@ -297,7 +297,107 @@ const reduceArray2 = array.reduce((accumulator, num) => {
 // returns 34 because starting value
 ```
 
+### Advanced Objects
 
+#### Reference Type
+```javascript
+var object1 = {value: 10};
+var object2 = object1;
+var object3 = {value: 10};
+
+object1 === object2; //returns true
+object1 === object3; //returns false
+
+object1.value = 15;
+object2.value; // returns 15
+object3.value; // returns 10
+```
+Reference Type: not defined by the prog languages, they are created by the programmer.  
+In the previous example, __object2 is a reference of object1.__ So whatever changes made to object1 reflect in object2. (I guess in memory, object2 points to object1).  
+object3 creates a new object.
+
+#### Context vs Scope
+Scope is created when we see curly brackets {}
+```javascript
+function b() {
+	let a = a;
+}
+// this will not work because a only lives in the function
+console.log(a); 
+```
+How is context different: context tells you where we are within the object. 
+```javascript
+console.log(this); // prints out all the contents of the window object
+console.log(this === window); // returns true
+```
+__this__: what `this` is what is the object environment that we're in right now
+```javascript
+// this is equal
+this.alert();
+window.alert();
+```
+```javascript
+function a() {
+	console.log(this);
+}
+a(); // prints out the window object because we are in the window object right now. 
+
+const object4 = {
+	a: function() {
+		console.log(this);
+	}
+}
+object4.a(); // prints out object4 because 'this' refers to object4
+```
+#### Instantiation
+Make a copy of an object and reuse the code.  
+How to do instantiation:
+```javascript
+class Player {
+	constructor(name, type){
+		this.name = name;
+		this.type = type;
+	}
+	introduce() {
+		console.log(`Hi I am ${this.name}, I'm a ${this.type}`);
+	}
+}
+```
+Any time you want to access a property within the constructor, then use this.name.  
+If you want to copy the Player class, then you do the following:  
+Note: whenever you want to extend a class you want to use `super()` so tha you essentially have access to the Player class
+```javascript
+class Player {
+	constructor(name, type){
+		console.log('player', this);// returns player Wizard{} (this console.log statement will print first)
+		this.name = name;
+		this.type = type;
+	}
+	introduce() {
+		console.log(`Hi I am ${this.name}, I'm a ${this.type}`);
+	}
+}
+
+// I want Wizard to extend whatever Player has
+class Wizard extends Player{
+	constructor(name, type) {
+		super(name, type);
+		console.log('wizard', this); // returns Wizard{name: "Merlin", "Healer"} (this console.log will print second)
+	}
+	play() {
+		console.log(`WEEEEE I'm a ${this.type}`);
+	}
+}
+
+const wizard1 = new Wizard("Merlin", "Healer");
+const wizard1 = new Wizard("Harry", "Dark Magic User");
+
+wizard1.play(); // returns WEEEEE I'm a Healer
+wizard1.introduce(); // returns Hi I am Merlin, I'm a Healer
+
+wizard2.play(); // returns WEEEEE I'm a Dark Magic User
+wizard2.introduce(); // returns Hi I am Harry, I'm a Dark Magic User
+```
 
 
 
