@@ -398,6 +398,130 @@ wizard1.introduce(); // returns Hi I am Merlin, I'm a Healer
 wizard2.play(); // returns WEEEEE I'm a Dark Magic User
 wizard2.introduce(); // returns Hi I am Harry, I'm a Dark Magic User
 ```
+### Pass by Reference vs Pass by Value
+Pass by value: primitive types, copy the value and create the value somewhere else in memory (just like C++)
+Pass by reference: objects are passed by reference, or the memory address is passed, just like C++
+```javascript
+var a = 5; // primitive value
+var b = a; //primitive value
 
+b++; 
+
+console.log(a); // 5
+console.log(b); // 6
+
+// the result is because of pass by value
+
+let obj1 = { name: 'Yao', password: '123'};
+let obj2 = obj1;
+
+// obj1 and obj2 should be the same
+
+obj2.password = 'easypeasy';
+
+console.log(obj1); // password has been changed
+console.log(obj2);	// both obj1 and obj2 password has been changed to the same thing, easypeasy
+
+// this is due to pass by reference
+```
+With an array:
+```javascript
+var c = [1,2,3,4,5];
+var d = c;
+d.push(133243);
+
+console.log(d); // [1,2,3,4,5,133243]
+console.log(c); // [1,2,3,4,5,133243] c has been changed as well
+
+// maybe we do want to clone an object and not modify it like above
+
+var e = [1,2,3,4,5];
+var f = [].concat(c);
+f.push(123456);
+console.log(f); // [1,2,3,4,5, 123456
+console.log(e); // [1,2,3,4,5]
+
+```
+Copying Objects (more tricky)
+```javascript
+// copying objects is a little tricky
+let obj = {a: 'a', b: 'b', c: 'c'};
+let clone = Object.assign({}, obj);
+let clone2 = {...obj}; // another shorthand to copy the object by pass by value, not pass by reference
+obj.c = 5;
+console.log(clone); // {a: 'a', b: 'b', c: 'c'} cloned object was not affected at all even though we changed c: 5
+console.log(clone2); // {a: 'a', b: 'b', c: 'c'}
+```
+What if there is an object within an object?
+__Shallow clone__: cloned the first level (memory address in the outer object). But within that object, there was another memory address. So we didn't clone the second level which means that in the second round of console.log(), c is changed to 'there is a change'
+```javascript
+let obj = {
+			a: 'a', 
+			b: 'b', 
+			c: {deep: 'try and copy me'}
+		};
+let clone = Object.assign({}, obj);
+let clone2 = {...obj};
+
+obj.c = 5;
+console.log(obj); // {a: 'a', b: 'b', c: 5} 
+console.log(clone); // {a: 'a', b: 'b', c: {deep: 'try and copy me'}}
+console.log(clone2); // {a: 'a', b: 'b', c: {deep: 'try and copy me'}}
+
+obj.c.deep = 'there is a change';
+console.log(obj); // {a: 'a', b: 'b', c: {deep: 'there is a change'}}
+console.log(clone); // {a: 'a', b: 'b', c: {deep: 'there is a change'}}
+console.log(clone2); // {a: 'a', b: 'b', c: {deep: 'there is a change'}}
+```
+How to do deep cloning: be careful when deep cloning. It will take a long time to do a deep clone if the object is massive. 
+```javascript
+let obj = {
+			a: 'a', 
+			b: 'b', 
+			c: {deep: 'try and copy me'}
+		};
+let clone = Object.assign({}, obj);
+let clone2 = {...obj};
+// turn everything in the stringify into a string
+// and then parse through when outputting it
+let superClone = JSON.parse(JSON.stringify(obj));
+
+obj.c.deep = 'there is a change';
+console.log(obj); // {a: 'a', b: 'b', c: {deep: 'there is a change'}}
+console.log(clone); // {a: 'a', b: 'b', c: {deep: 'there is a change'}}
+console.log(clone2); // {a: 'a', b: 'b', c: {deep: 'there is a change'}}
+console.log(superClone); // {a: 'a', b: 'b', c: {deep: 'try and copy me'}}
+```
+### Type Coercion
+What is Type Coercion: when the operant (things to the right and left of the operator) are different types, one of them converted into an equivalent value by the JS engine. It means that the language converting a certain type to another type.  
+ie. 1 == '1' Javascript looks at this and thinks, I think you meant to compare 1 with the number 1, not the string one, and JS will return true.   
+Javscript has heavy type coercion because it is dynamically typed.  
+Happens when there is a double equals ==  
+When you do 1 === '1', it returns false because JS will not coerce the values.  
+But do not do ==, it is not good code. Always use ===  
+Object.is(+0, -0) returns false  
++0 === -0 returns true  
+NaN === NaN returns false  
+Object.is(NaN, NaN) returns true  
+Type coercion is confusing :P
+
+### ES6
+.includes and exponential operator
+```javascript
+'Helllllo'.includes('o'); // returns true
+const pets = ['dog', 'cat', 'bird'];
+pets.includes('dog'); // retrns true
+pets.includes('bat'); // returns false
+
+const square = (x) => x**2;
+
+square(2); // returns 4
+square(5); // returns 25
+
+const cube = (x) => x***3;
+
+cube(3); // returns 27
+cube(4); // returns 64
+```
 
 
