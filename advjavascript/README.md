@@ -523,5 +523,132 @@ const cube = (x) => x***3;
 cube(3); // returns 27
 cube(4); // returns 64
 ```
+### ES7
+```javascript
+.padStart()
+.padEnd()
+
+'Turtle'.padStart(10); // console will return "    Turtle" which 10 total spaces used including the string
+'Turtle'.padEnd(10); //"Turtle    "
+
+// Trailing commas in function's parameter lists and calls
+
+const fun = (
+			a,
+			b,
+			c,
+			d,
+			) => {
+	console.log(a);
+}
+
+fun(1,2,3,4,); // this is still valid javascript
+// prints out 1
+
+// Why is this useful? Syntatic and looks cleaner when you have a long parameter list
+
+Object.values
+Object.entries
+Object.keys
+// because this object is not an array, can't do map, filter, reduce...still want to iterate over the object
+let obj = {
+	username0: 'Santa',
+	username1: 'Rudolph',
+	username2: 'Mr.Grinch'
+}
+
+// iterate over object like an array
+Object.keys(obj).forEach((key, index) => {
+	console.log(key, obj[key]);
+}); 
+
+Object.values(obj).forEach(value => {
+	console.log(value);
+}) // get Santa, Rudolph, Mr.Grinch
+
+Object.entries(obj).forEach(value => {
+	console.log(value);
+})
+// returns an array of ["username0", "Santa"], ["username1", Rudolph],["username2", Mr.Grinch] 
+
+// Real-life application
+Object.entries(obj).map(value => {
+	// return value[1] because we want to grab the second entries of each array. That returns Santa, Rudolph, Mr.Grinch
+	// value[0].replace('username', '') will grab the first value of each array, which is username0, username1, username2, and replace the username part with an empty string. In my case, I wanted to put a space in between so a string with a space.
+	return value[1] + value[0].replace('username', ' ')
+})
+
+```
+### ES10
+```javascript
+const array = [1,2,3,4,5];
+array.flat(); // returns [1,2,3,4,5]
+
+const array2 = [1,[2,3],[4,5]];
+array2.flat(); // returns [1,2,3,4,5]. it takes out the nested arrays
+
+const array3 = [1,2,[3,4,[5]]];
+array3.flat();
+// returns [1,2,3,4, Array(1)] not a completely flat array
+
+// can tell .flat() how many layers to flatten
+array3.flat(2); // returns [1,2,3,4,5]
+
+// if there is a bunch of empty entires, can use .flat() to flatten our array and clean up our data
+const entries = ['bob', 'sally',,,,,,,'cindy'];
+entries.flat(); 
+
+flatMap()
+
+const jurassicParkChaos = jurassicPark.flatMap(creature => creature + 'T-rex');
+
+const userEmail = '               email@gmail.com';
+const userEmail2 = 'johnnydangerous@gmail        '
+
+console.log(userEmail.trimStart()); // trims the beginning
+console.log(userEmail.trimEnd()); // trims the end
+// the strings will not have any blank spaces in them
+
+// fromEntries() transforms a key value pair into an object
+userProfiles = [['commanderTom', 23], ['derekZlander', 40], ['hansel', 18]];
+
+const obj = Object.fromEntries(userProfiles);
+// returns an object 
+// {
+// 	commanderTom: 23,
+// 	derekZlander: 40,
+// 	hanel: 18
+// }
+Object.entries(obj); // returns the exact opposite of fromEntries (so it returns the format of userProfiles)
+
+// try catch block: try a piece of code, and if there are errors, we "catch" them and do something within the catch block
+try {
+	4+5
+} catch {
+	console.log("you messed up");
+} // 9
+try {
+	true + 'hi'
+} catch {
+	console.log("you messed up");
+} // returns "truehi"
+try {
+	bob + 'hi'
+} catch (error){
+	console.log("you messed up" + error);
+} // returns "you messed upReference Error: bob is not defined"
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
