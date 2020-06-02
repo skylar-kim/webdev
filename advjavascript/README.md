@@ -639,7 +639,102 @@ try {
 } // returns "you messed upReference Error: bob is not defined"
 ```
 
+### Advanced Loops
+2 more ways to loop over things: for of and for in 
+```javascript
+const basket = ['apples', 'oranges', 'grapes'];
 
+//one way to loop over an array
+for (let i = 0; i < basket.length; i++){
+	console.log(basket[i]);
+}
+
+//2:forEach
+basket.forEach(item => {
+	console.log(item);
+}) 
+
+// for of
+// iterating will be done over iterables
+// iterables: js says you can iterate over this thing (ie. arrays, strings) arrays and strings are iterable
+// for of allows us to iterate over the iterables
+for (item of basket) {
+	console.log(item);
+}
+
+// for in loop: works with objects, allows us to loop over and see the object properties
+// we are not iterating here. with an object in js, we are enumerating because properties of an object are enumerables. An object in js is enumerable if it allows us to see the properties
+// if an object is attempted to iterate with a for of loop, it would not work because an object is not iterable
+const detailedBasket = {
+	apples: 8,
+	oranges: 2,
+	grapes: 4
+}
+
+for (item in detailedBasket) {
+	console.log(item);
+}
+// returns apples, oranges, grapes
+
+```
+
+### How does Javascript work?
+What do these statements mean? Javascript is an asynchronus, single threaded language that can be non-blocking. 
+1. __Asynchronus vs Synchronus__: Synchronus programming means that things are things are executed contiguously. The latter cannot execute before the first finishes. Asynchronus 
+2. __Javascript is a single-threaded language that can be non-blocking__: single threaded means there is only 1 call stack (only one thing at a time, first in-last out), one statement executed at a time. 
+
+What is a program?  
+- allocate memory
+- parse and execute scripts  
+
+__Javascript Engine__: V8 engine reads the js and translates to machine langauge. Made up of memory heap and call stack.  
+Memory Leak: happen when there is unused memory, and it fills up the memory heap. (global variables are bad).  
+
+__Call Stack__: that's what reads and exec our script. It's the same idea as what I learned in class. Once things are executed and go out of scope, they are removed from the stack. 
+```javascript
+const one = () => {
+	const two = () => {
+		console.log('4');
+	}
+	two();
+}
+```
+__Javascript Run-Time Environment__: JS runtime env is included in the browser. Has web APIs, callback queue, and even tloop. 
+```javascript
+console.log('1');
+setTimeout(() => {
+	console.log('2');
+}, 0)
+console.log('3');
+
+// CALL STACK
+
+// WEB APIs
+// setTimeout is part of a web api, not part of JS
+
+// CALLBACK QUEUE
+
+// EVENT LOOP
+
+```
+even if the timeout time is 0, 2 is still printed after 1 and 3 because setTimeout went into the Web API, then the Callback Queue, then the Event loop checked if there was anything in the callback queue. While all this was happening, the call stack in JS executed the console.log('1') and console.log('3'). So the order of printing is: 1 3 2   
+
+
+### Javascript Modules: ES6 + Webpack2
+```javascript
+//js1
+export const add = (a, b) => a+b;
+//or
+export default function add() {
+	return a+b;
+}
+
+//js2 
+import {add} from './add';
+//or
+import add from './add';
+
+```
 
 
 
