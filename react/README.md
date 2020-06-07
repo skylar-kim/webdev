@@ -76,6 +76,88 @@ const Hello = (props) => {
 ```
 Think of React as we're creating these functions that take parameters and these parameters which are given by giving attribtues and values, are just being rendered. 
 
+### Robofriends Project
+```javascript
+return (
+		<h1> Robofriends </h1>
+		<div>
+			<img alt='robots' src='https://robohash.org/test?200x200'/>
+			<div>
+				<h2>Jane Doe</h2>
+				<p>jane.doe@gmail.com</p>
+			</div>
+		</div>
+	);
+```
+Can't be returning multiple things. But only return one thing.  
+Tachyons:
+```javascript
+const Card = () => {
+	return (
+		<div className='bg-light-green dib br3 pa3 ma2 grow'>
+			<img alt='robots' src='https://robohash.org/test?200x200'/>
+			<div>
+				<h2>Jane Doe</h2>
+				<p>jane.doe@gmail.com</p>
+			</div>
+		</div>
+	);
+}
+```
+The `'bg-light-green dib br3 pa3 ma2 grow'` means: background light green, display block, border 2, padding 3, margins 2, grow animation.  
+
+__Export default vs not default__:  
+The rule is, for components that are `export default ComponentName` aka they are a default, we can just do `import ComponentName from './ComponentName';` in the index.js file. However, for components that aren't export deafult, we need to destructure it.  
+For example in index.js:
+```javascript
+import Card from './Card';
+import {robots} from './robots';
+```
+The Card component has `export default Card;` in the Card.js file. The robots component doesn't have that, so we have to destructure it. If there was another variable in robot.js, then we need to include it in the destructure.  
+For example;
+```javascript
+import Card from './Card';
+import {robots, cats} from './robots';
+```
+
+__Destructuring continued__: 
+```javascript
+const Card = ({name, email, id}) => {
+
+}
+```
+Here, we are receiving the props and destructuring the props. So before, we need to do props.name, props.email, props.id but we can just use name, email, id.  
+
+__key id__: In CardList.js this is the following code from before:
+```javascript
+const CardList = ({robots}) => {
+	const cardArray = robots.map((user, i) => {
+		return <Card id={robots[i].id} name={robots[i].name} email={robots[i].email}/>
+	})
+	return (
+		<div>
+			{cardArray}
+	  	</div>
+	);
+}
+```
+The console will give us a warning because _each child in an array or iterator should have a unique key prop_. This is because when working with react, the way the virtual DOM works is, it keeps track of what all the cards are. But without having the 'key prop', if some of the cards gets deleted, React won't know which one is which, and then we have to change the entire DOM. 
+```javascript
+const CardList = ({robots}) => {
+	const cardArray = robots.map((user, i) => {
+		return <Card key={i} id={robots[i].id} name={robots[i].name} email={robots[i].email}/>
+	})
+	return (
+		<div>
+			{cardArray}
+	  	</div>
+	);
+}
+```
+
+
+
+
 
 
 
