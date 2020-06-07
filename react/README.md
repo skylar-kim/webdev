@@ -39,9 +39,42 @@ The reason why React is so fast is because it creates the objects (like h1, etc)
 
 ### Props, or properties
 In the index.js file, you can add properties.
-
-
-
+For example, let's take a look at the following (btw, this is in Babel (Javascript)):  
+__In index.js__: Within the Hello component, we can add props/properties. Within the property, we can say whatever we want. In this case, it is what we wrapped in {}. Here, we have given a "greeting" prop to "Hello".
+```javascript
+ReactDOM.render(
+  <React.StrictMode>
+    <Hello greeting={'Hello' + ' React Ninja'}/>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
+__In Hello.js__: We now have access in 'Hello.js' to props. We can now say `{this.props.greeting}` and the website will show "Hello React Ninja". This object, which is 'Hello', has properties 'props' which is greeting.  
+But now, we have access to whatever property and the property value we get from 'Hello'.
+```javascript
+class Hello extends Component {
+	render(){
+		return (
+		<div className='f1 tc'>
+			<h1> Hello World </h1>
+			<p> {this.props.greeting} </p>
+		</div> 
+		)
+	}
+}
+```
+The above syntax is just a function essentially. The above syntax can be rewritten as the following:  
+```javascript
+const Hello = (props) => {
+	return (
+	<div className='f1 tc'>
+		<h1> Hello World </h1>
+		<p> {props.greeting} </p>
+	</div> 
+	);
+}
+```
+Think of React as we're creating these functions that take parameters and these parameters which are given by giving attribtues and values, are just being rendered. 
 
 
 
