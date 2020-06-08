@@ -155,6 +155,166 @@ const CardList = ({robots}) => {
 }
 ```
 
+### State
+The description of your app. An object that describes your application.  
+Props are simply things that come out of state. State are things that can change and affect our app. It usually lives in the parent component, which the parent component will pass the state to different child components.  
+
+Explanantion of use in robofriends:  
+The setup is the following: App.js is the parent, and SearchBox.js and CardList.js are the child components. Anytime the searchbox changes, onChange event is triggered (onChange is an HTML event), I'm going to call the function searchChange. The searchChange function is a prop (see App.js) is the onSearchChange function that is defined in App.js. That's how we communicate with the parent. 
+App.js:
+```javascript
+class App extends Component {
+	constructor() {
+		super();
+		this.state = {
+			robots: robots,
+			searchfield: ''
+		}
+	}
+
+	onSearchChange(event) {
+		console.log(event.target.value);
+	}
+
+	render () {
+		return (
+			<div className='tc'>
+				<h1> ROBOFRIENDS </h1>
+				<SearchBox searchChange={this.onSearchChange}/>
+				<CardList robots = {this.state.robots}/>
+			</div>
+			
+		);
+	}
+}
+```
+SearchBox.js:
+```javascript
+const SearchBox = ({searchChange}) => {
+	return (
+		<div className='pa2'> 
+			<input 
+				className='pa3 ba b--green bg-lightest-blue'
+				type='search' 
+				placeholder='search robots' 
+				onChange = {searchChange}
+			/>
+		</div>
+		
+	);
+}
+```
+__Possible error__: TypeError: Cannot read property 'state' of undefined. ZTM says the rule of thumb is: Anything that comes from React (constructor, render, etc), anytime you make your own methods, use the syntax below (in onSearchChange). The arrow function syntax makes sure that the `this` value is according to where it was created, which is the "App".
+```javascript
+class App extends Component {
+	constructor() {
+		super();
+		this.state = {
+			robots: robots,
+			searchfield: ''
+		}
+	}
+
+	onSearchChange = (event) => {
+		this.setState();
+		const filteredRobots = this.state.robots.filter(robots => {
+			return robots.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+		})
+		console.log(filteredRobots);
+	}
+
+	render () {
+		return (
+			<div className='tc'>
+				<h1> ROBOFRIENDS </h1>
+				<SearchBox searchChange={this.onSearchChange}/>
+				<CardList robots = {this.state.robots}/>
+			</div>
+			
+		);
+	}
+}
+```
+In order to __update the state__, do the following:
+```javascript
+onSearchChange = (event) => {
+	this.setState({searchfield: event.target.value});
+	const filteredRobots = this.state.robots.filter(robots => {
+		return robots.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+	})
+	console.log(filteredRobots);
+}
+```
+
+### Building a React App 4
+__Smart Component__: App.js has a state, a piece of data that describes our app, and they are called smart components. Usually has the class syntax.  
+__React Lifecycle Methods__: methods that we can use in our programs. They are called lifecycle hooks because when we run these methods, it will automatically trigger when the app gets loaded on the website.  
+(https://reactjs.org/docs/react-component.html)
+1. Mounting: When the website is refreshed, the app component (App.js) gets mounted into the `document.getElementById('root'));`. In the index.html file, our Web page is nothing but a `<div id='root'></div>`. When we "mount" a component, we are replacing the root and adding our entire app. Mounting is the start of the app. When we are mounting, we hit the lifecycle hooks which are: `constructor(), componentWillMount(), render(), and componentDidMount()` in that order.  
+`constructor()`: Does this component have a constructor? Yes, run the piece of code. If not, go to `componentWillMount()` and so on and so forth. 
+
+2. Updating: Whenever a component changes. For example in Robofriends: when we search something, the CardList component gets re-rendered because we have new info/the function receieves new inputs. Within those components, we can add the following methods:  
+`componentWillReceiveProps()`  
+`shouldComponentUpdate()`  
+`componentWillUpdate()`  
+`render()`  
+`componentDidUpdate()`  
+3. Unmounting: component is removed from a page.  
+Robofriends example: if we change to a different page, the component will unmount.  
+
+For example (App.js):
+```javascript
+class App extends Component {
+	constructor() {
+		super();
+		this.state = {
+			robots: [],
+			searchfield: ''
+		}
+		console.log('constructor');
+	}
+
+	componentDidMount() {
+		this.setState( {robots: robots})
+		console.log('componenetDidMount');
+	}
+
+	onSearchChange = (event) => {
+		this.setState({searchfield: event.target.value});
+	}
+
+	render () {
+		const filteredRobots = this.state.robots.filter(robots => {
+			return robots.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+		})
+		console.log('render');
+		return (
+			<div className='tc'>
+				<h1 className='f1'> ROBOFRIENDS </h1>
+				<SearchBox searchChange={this.onSearchChange}/>
+				<CardList robots = {filteredRobots}/>
+			</div>
+			
+		);
+	}
+}
+```
+In the console it will print out:
+1. constructor: ran first
+2. render: ran second
+3. componentDidMount: ran third (just like the documentation)
+4. render: why did render run again? Because we created the constructor, ran the render, and then upadted the state in componentDidMount(). Because we updated the state - every time the state changes, we go to the lifecycle, it's updating and runs render() again. Because the state.robots goes from an empty array to a robot's list, render gets re-run and the virtual DOM notices the change and repaints the web browser to include the robots. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
