@@ -303,7 +303,11 @@ In the console it will print out:
 1. constructor: ran first
 2. render: ran second
 3. componentDidMount: ran third (just like the documentation)
-4. render: why did render run again? Because we created the constructor, ran the render, and then upadted the state in componentDidMount(). Because we updated the state - every time the state changes, we go to the lifecycle, it's updating and runs render() again. Because the state.robots goes from an empty array to a robot's list, render gets re-run and the virtual DOM notices the change and repaints the web browser to include the robots. 
+4. render: why did render run again? Because we created the constructor, ran the render, and then upadted the state in componentDidMount(). Because we updated the state - every time the state changes, we go to the lifecycle, it's updating and runs render() again. Because the state.robots goes from an empty array to a robot's list, render gets re-run and the virtual DOM notices the change and repaints the web browser to include the robots.  
+
+
+### Building a React App 5: Children
+
 
 
 
